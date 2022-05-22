@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Entity/Entity.gd" type="Script" id=1]
 [ext_resource path="res://Misc/icon.png" type="Texture" id=2]
@@ -6,11 +6,33 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 7.81025
 
-[node name="Entity" type="KinematicBody2D"]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 8 )
+
+[node name="Entity" type="KinematicBody2D" groups=["entity"]]
+light_mask = 3
 script = ExtResource( 1 )
+speed = 40
+drag = 0.2
 
 [node name="sprite" type="Sprite" parent="."]
+light_mask = 3
 texture = ExtResource( 2 )
 
-[node name="hitbox" type="CollisionShape2D" parent="."]
+[node name="collder" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="hit_area" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource( 2 )
+
+[node name="hp_label" type="Label" parent="."]
+light_mask = 3
+margin_left = -4.9375
+margin_top = -12.8125
+margin_right = 20.0625
+margin_bottom = 1.1875
+rect_scale = Vector2( 0.4, 0.4 )
+text = "100"
+align = 1
